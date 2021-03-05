@@ -2,20 +2,20 @@
 on primary
 (
 	name ='qlquan_rauma1',
-	filename ='D:\học kì 4\laptrinhWin\qlquan_rauma1.mdf',
+	filename ='D:\đồ én\qlquan_rauma1.mdf',
 	size=100MB,
 	maxsize=1GB,
 	filegrowth=20%
 ),
 (
 	name ='qlquan_rauma2',
-	filename ='D:\học kì 4\laptrinhWin\qlquan_rauma2.ndf'
+	filename ='D:\đồ én\qlquan_rauma2.ndf'
 )
 
 log on
 (
 	name ='qlquan_raumalog',
-	filename ='D:\học kì 4\laptrinhWin\qlquan_raumalog.ldf',
+	filename ='D:\đồ én\qlquan_raumalog.ldf',
 	size=10MB,
 	maxsize=50MB,
 	filegrowth=10%
@@ -59,4 +59,13 @@ create table PhanLoaiSanPhan
    MaSP int primary key ,
    TenLoai nvarchar(100),
 )
+create table NhanVien
+(
+ID_NV int  not null,
+HoTen nvarchar(50),
+LoaiNV nvarchar(2),
+ChucDAnh nvarchar(20)
+)
+alter table NhanVien
+add constraint PK_NhanVien primary key(ID_NV)
 
