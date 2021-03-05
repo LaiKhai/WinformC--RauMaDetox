@@ -2,20 +2,20 @@
 on primary
 (
 	name ='qlquan_rauma1',
-	filename ='D:\HỌC TẬP\ĐỒ ÁN LẬP TRÌNH WINDOWS\WinformC--RauMaDetox\qlquan_rauma1.mdf',
+	filename ='D:\học kì 4\laptrinhWin\qlquan_rauma1.mdf',
 	size=100MB,
 	maxsize=1GB,
 	filegrowth=20%
 ),
 (
 	name ='qlquan_rauma2',
-	filename ='D:\HỌC TẬP\ĐỒ ÁN LẬP TRÌNH WINDOWS\WinformC--RauMaDetox\qlquan_rauma2.ndf'
+	filename ='D:\học kì 4\laptrinhWin\qlquan_rauma2.ndf'
 )
 
 log on
 (
 	name ='qlquan_raumalog',
-	filename ='D:\HỌC TẬP\ĐỒ ÁN LẬP TRÌNH WINDOWS\WinformC--RauMaDetox\qlquan_rauma1.ldf',
+	filename ='D:\học kì 4\laptrinhWin\qlquan_raumalog.ldf',
 	size=10MB,
 	maxsize=50MB,
 	filegrowth=10%
@@ -43,5 +43,20 @@ Create table TypeAccount
 	taikhoan varchar(20) not null,
 	email varchar(50) not null, 
 	loaiAcc nvarchar(10)
+)
+
+create table Memu
+(
+    MaSP int ,
+    TenSP nvarchar(100) not null ,
+    GiaSP int,
+    TenLoai nvarchar(100),
+    
+)
+
+create table PhanLoaiSanPhan
+(
+   MaSP int primary key ,
+   TenLoai nvarchar(100),
 )
 
