@@ -60,18 +60,18 @@ create table UserPermission
 
 create table Menu
 (
-    MaSP int ,
+    MaSP int not null primary key,
     TenSP nvarchar(100) not null ,
     GiaSP int,
-    TenLoai nvarchar(100),
-    
+    TenLoai nvarchar(100),   
 )
 
-create table PhanLoaiSanPhan
+create table PhanLoaiSanPham
 (
-   MaSP int primary key ,
+   MaSP int not null,
    TenLoai nvarchar(100),
 )
+
 create table NhanVien
 (
 ID_NV int  not null,
@@ -87,7 +87,29 @@ Hoten Nvarchar(50),
 LoaiNV nvarchar(2),
 Tonggio int,
 )
+
+create table HoaDon
+(
+	ID_HoaDon int not null,
+	ID_NV int,
+	TenSP nvarchar(100),
+	NgayLapHD datetime,
+)
+
+create table CT_HoaDon
+(
+	ID_HoaDon int not null,
+	MaSP int not null,
+	SoLuong int,
+	GiaTien money,
+	ChietKhau money
+)
 --Khóa Chính, Khóa Ngoại --
+alter table PhanLoaiSanPham
+add constraint PK_PhanLoaiSP primary key (MaSP)
+
+alter table CT_HoaDon
+add constraint PK_CTHoaDon primary key (ID_HoaDon,MaSP)
 
 alter table Account
 add constraint PK_Account primary key (taikhoan)
@@ -103,8 +125,12 @@ add constraint PK_Permission primary key (ID_per)
 
 alter table NhanVien
 add constraint PK_NhanVien primary key(ID_NV)
+
 alter table ChamCong
 add constraint FK_ChamCong primary key(ID_NV)
+
+alter table HoaDon
+add constraint PK_HoaDon primary key (ID_HoaDon)
 
 alter table TypeAccount
 add constraint FK_TypeAccount foreign key (taikhoan) references Account(taikhoan)
@@ -115,9 +141,20 @@ add constraint FK_UserPermission foreign key (ID_TAcc) references TypeAccount(ID
 alter table UserPermission
 add constraint FK_UserPermission_per foreign key (ID_per) references Permission(ID_per)
 
-alter table NhanVien
-add constraint FK_NhanVien foreign key (ID_NV) references ChamCong(ID_NV)
+alter table ChamCong
+add constraint FK_NhanVien foreign key (ID_NV) references NhanVien(ID_NV)
 
+alter table Account
+add constraint FK_Account foreign key (ID) references NhanVien(ID_NV)
 
-alter table NhanVien
-add constraint FK_NhanVien foreign key (ID_NV) references Accout(ID)
+alter table CT_HoaDon
+add constraint FK_CTHoaDon_HoaDon foreign key (ID_HoaDon) references HoaDon(ID_HoaDon)
+
+alter table CT_HoaDon
+add constraint FK_CTHoaDon_Menu foreign key (MaSP) references Menu(MaSP)
+
+alter table PhanLoaiSanPham
+add constraint FK_PhanLoaiSP_Menu foreign key (MaSP) references Menu(MaSP)
+
+alter table HoaDon
+add constraint FK_HoaDon_NhanVien foreign key (ID_NV) references NhanVien(ID_NV)
