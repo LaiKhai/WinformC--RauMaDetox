@@ -68,7 +68,7 @@ create table Menu
 
 create table PhanLoaiSanPham
 (
-   MaSP int not null,
+   MaSP int not null primary key,
    TenLoai nvarchar(100),
 )
 
@@ -158,3 +158,6 @@ add constraint FK_PhanLoaiSP_Menu foreign key (MaSP) references Menu(MaSP)
 
 alter table HoaDon
 add constraint FK_HoaDon_NhanVien foreign key (ID_NV) references NhanVien(ID_NV)
+
+alter table Menu
+add constraint FK_Menu_PhanLoaiSanPham foreign key (MaSP) references PhanLoaiSanPham(MaSP)
