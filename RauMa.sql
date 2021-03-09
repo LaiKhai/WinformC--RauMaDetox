@@ -41,6 +41,25 @@ LoaiSP nvarchar(20),
 TrangThai bit default 1
 )
 
+create table NhanVien
+(
+ID int primary key,
+HoTen nvarchar(50),
+NgaySinh datetime,
+ChucDanh nvarchar(30),
+LoaiNV nvarchar(20),
+SDT char(10),
+TaiKhoan varchar(100),
+Email varchar(100),
+TrangThai Bit default 1,
+)
+
+
+
+
 --Khóa Chính, Khóa Ngoại 
 alter table SanPham
 add constraint FK_SanPham_LoaiSanPham foreign key (MaLoaiSP) references LoaiSP(MaLoaiSP)
+
+alter table NhanVien
+add constraint FK_NhanVien primary key (ID)
