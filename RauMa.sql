@@ -43,7 +43,7 @@ TrangThai bit default 1
 
 create table NhanVien
 (
-ID int primary key,
+ID int not null,
 HoTen nvarchar(50),
 NgaySinh datetime,
 ChucDanh nvarchar(30),
